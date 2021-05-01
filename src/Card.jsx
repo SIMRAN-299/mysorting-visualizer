@@ -48,8 +48,10 @@ export default class SortingVisualizer extends React.Component {
   }
 
   mergeSort() {
-    
+      if(sorting_already_running===0){
       sorting_already_running=1;
+
+      
     const animations = getMergeSortAnimations(this.state.array);
     
     for (let i = 0; i < animations.length; i++) {
@@ -77,16 +79,27 @@ export default class SortingVisualizer extends React.Component {
         }, i*this.state.speed);
       }
     }
+    setTimeout(()=>{
+             console.log("timed out");
+             sorting_already_running=0;
+    },animations.length*this.state.speed);
   
+   }
+   else{
+     alert("Sorting already running.You can't run another algorithm when one algorithm is running");
+   }
+
+
 }
 
+
   quickSort() {
-    
+  
     
     const animations=MyQuicksort(this.state.array);
-  
-  
-    let timer=0;
+     if(sorting_already_running===0){
+      sorting_already_running=1;
+      let timer=0;
     
     for (let i = 0; i < animations.length; i++) {
       
@@ -152,14 +165,26 @@ export default class SortingVisualizer extends React.Component {
          timer++;
          
          
+         
 
       }
+      
     }
+    
+  }
+  setTimeout(()=>{
+    sorting_already_running=0;
+    console.log("done");
+},timer*this.state.speed);
       
       
       
     
   }
+  else{
+    alert("Sorting already running.You can't run another algorithm when one algorithm is running");
+  }
+
   const arrayBars = document.getElementsByClassName('array-bar');
 
 
@@ -171,6 +196,8 @@ export default class SortingVisualizer extends React.Component {
     const animations=heapsort(this.state.array);
     console.log(this.state.array);
     let timer=0;
+    if(sorting_already_running===0){
+      sorting_already_running=1;
     for(let i=0;i<animations.length;i++){
       const arrayBars = document.getElementsByClassName('array-bar');
       const [[barone,height1],[bartwo,height2]]=animations[i][1];
@@ -198,12 +225,21 @@ export default class SortingVisualizer extends React.Component {
          timer++;
 
     }
+    setTimeout(()=>{
+          sorting_already_running=0;
+    },timer*this.state.speed);
+  }
+  else{
+    alert("Sorting already running.You can't run another algorithm when one algorithm is running");
+  }
 
          
   }
 
   bubbleSort() {
     const animations=mybubblesort(this.state.array);
+    if(sorting_already_running===0){
+      sorting_already_running=1;
     
     for (let i = 0; i < animations.length; i++) {
     
@@ -252,17 +288,31 @@ export default class SortingVisualizer extends React.Component {
       
       }
   }
+  setTimeout(()=>{
+      sorting_already_running=0;
+  },animations.length*this.state.speed);
+}
+else{
+  alert("Sorting already running.You can't run another algorithm when one algorithm is running");
+}
 
            
   }
   
 
   changespeed(){
+     if(sorting_already_running===0){
       const cs=document.getElementById("s1").value;
       
       this.state.speed=101-cs;
+     }
+     else{
+      alert("you can't change array size when another algorithm is running");
+       
+     }
   }
   changeNumberofarray(){
+    if(sorting_already_running===0){
     const new_array_size=document.getElementById("nob1").value;
     this.state.bar=new_array_size;
     const n_width=Math.round(25-(19/90)*(new_array_size-10));
@@ -271,7 +321,11 @@ export default class SortingVisualizer extends React.Component {
     for (let i = 0; i <this.state.bar; i++) {
       array.push(randomIntFromInterval(5, 530));
     }
-    this.setState({array});
+
+    this.setState({array});}
+    else{
+      alert("you can't change array size when another algorithm is running");
+    }
     
     
   }

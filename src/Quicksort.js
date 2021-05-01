@@ -3,11 +3,9 @@ let animations=[];
 let count=0;
 function QS(array){
     animations=[];
-    console.log(array);
-    MyQuicksort(array,0,array.length-1);
     
-    console.log(array);
-    console.log(count);
+    MyQuicksort(array,0,array.length-1);
+   
 
     
     return animations;
@@ -33,7 +31,7 @@ function MyQuicksort(temp,low,high){
 function partition(a,low,high){
     let pivot = a[high]; 
     animations.push(["pivot",high]);
-    console.log(high);
+    
     count++;
     let i = (low - 1);
  
