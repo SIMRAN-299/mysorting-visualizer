@@ -343,13 +343,13 @@ else{
         
          <div className="buttons">
            
-         <div>
+         <div className="margin-left">
          <h1>sorting speed</h1>  
          <input type="range" id="s1" name="points" min="10" max="100" onChange={()=>this.changespeed()}/>
          </div>
          
          
-         <div>
+         <div className="margin-left">
            <h1>number of bars</h1>
          <input type="range" id="nob1" name="points" min="10" max="100" onChange={()=>this.changeNumberofarray()}/>
          </div>
