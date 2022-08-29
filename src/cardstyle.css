@@ -24,6 +24,7 @@
         margin:0 auto;
         padding:20px 0;
         height:80%; 
+        
 
   }
   
@@ -73,6 +74,10 @@
   button:hover{
     background-color: rgb(48, 148, 230);
     
+  }
+  .reload{
+    background-color: rgb(16, 44, 146);
+    width:150px;
   }
   
   

@@ -29,8 +29,8 @@ function MyQuicksort(temp,low,high){
 }
 
 function partition(a,low,high){
-    let pivot = a[high]; 
-    animations.push(["pivot",high]);
+    let pivot = a[high]; //taking the last element as pivot;
+    animations.push(["pivot",high]);//pivot will be colored green
     
     count++;
     let i = (low - 1);
