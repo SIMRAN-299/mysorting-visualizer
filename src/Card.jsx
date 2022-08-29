@@ -4,7 +4,7 @@ import './cardstyle.css';
 import mybubblesort from './Bubblesort.js';
 import heapsort from './MyHeapsort.js';
 import MyQuicksort from './Quicksort';
-import Slider from './Slider';
+//port Slider from './Slider';
 
 // Change this value for the speed of the animations.
 const ANIMATION_SPEED_MS = 10;
@@ -34,11 +34,20 @@ export default class SortingVisualizer extends React.Component {
       
     };
   }
-
+  //this is for restting the array when sorting is completed
+  res(){
+    if(!sorting_already_running){
+      this.resetArray();
+    }
+    else{
+      alert("cannot reset the array when sorting algo is running")
+    }
+  }
+// CONSTRUCTOR()->COMPONENTWILLMOUNT->RENDER()->COMPONENTDIDMOUNT()->RENDER()
   componentDidMount() {
     this.resetArray();
   }
-
+  //this method is used for resetting the array
   resetArray() {
     const array = [];
     for (let i = 0; i <this.state.bar; i++) {
@@ -48,7 +57,7 @@ export default class SortingVisualizer extends React.Component {
   }
 
   mergeSort() {
-      if(sorting_already_running===0){
+      if(sorting_already_running===0){ //condition for checking if algo is running or not
       sorting_already_running=1;
 
       
@@ -375,7 +384,7 @@ else{
         
         
         
-        
+        <button className="reload"onClick={()=>this.res()}> RELOAD </button>
         <button onClick={() => this.mergeSort()}>Merge Sort</button>
         
         
@@ -392,7 +401,7 @@ else{
   }
 }
 
-// From https://stackoverflow.com/questions/4959975/generate-random-number-between-two-numbers-in-javascript
+
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
